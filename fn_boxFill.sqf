@@ -14,7 +14,7 @@ Configuration:
 				weapons[] = { "some_rifle_class" }; // Array of weapons to put in box
 				magazines[] = { {"some_rifle_magazine_class", 5} }; // Array of magazines+ammount to put in box
 				items[] = { { "some_item_class", 1 } }; // Array of items+ammount to put in box
-				weight = 5;
+				weight = 5; // Sets are picked at random; this weight influences their individual probabilities
 			};
 			someTurret = {
 				backpacks[] = { "some_turret_backpack", "some_bipod_backpack" }; // Array of backpacks to put in box
