@@ -4,7 +4,35 @@ Description: Fills a box with some random loot
 License: MIT
 Parameters:
 	- Box
-	- Config entry
+	- Config entry (direct child of CfgRandomLoot, default is SupplyDrop)
+	
+Configuration:
+	class CfgRandomLoot { // Contains all configuration for this function
+		class SupplyDrop { // The default box type
+			count[] = { 3, 5, 10 }; // How many weapon kits? Array as passed to `random`
+			someRifle = {
+				weapons[] = { "some_rifle_class" }; // Array of weapons to put in box
+				magazines[] = { {"some_rifle_magazine_class", 5} }; // Array of magazines+ammount to put in box
+				items[] = { { "some_item_class", 1 } }; // Array of items+ammount to put in box
+				weight = 5;
+			};
+			someTurret = {
+				backpacks[] = { "some_turret_backpack", "some_bipod_backpack" }; // Array of backpacks to put in box
+				// default weight is 1
+			};
+			// Summ of all weights is 1 + 5 = 6
+			// So the first set will have a change of 5 in 6 to be put in the box,
+			// the second set will have a chance of 1 in 6
+			// applied each time for the 3 to 10 sets that will be added to the box
+		};
+		class SmallerBox { // An alternative box type
+			// Default count is one set; equivalent to count[]={1,1,1}
+			someRifle {
+				weapons[] = { "some_rifle_class" }; // Array of weapons to put in box
+				magazines[] = { {"some_rifle_magazine_class", 5} }; // Array of magazines+ammount to put in box
+			};
+		};
+	};
 */
 
 params [["_box", objNull, [objNull]], ["_name", "SupplyDrop", [""]]];
